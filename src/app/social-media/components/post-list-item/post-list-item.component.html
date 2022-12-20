@@ -4,12 +4,12 @@
             <span>{{ post.title | titlecase }}</span>
         </mat-card-title>
         <mat-card-subtitle>
-            <span>{{ post.createdDate | date }}</span>
+            <span>{{ post.createdDate | timeAgo }}</span>
         </mat-card-subtitle>
     </mat-card-header>
     <img matCardImage *ngIf="post.imageUrl as imageUrl" [src]="imageUrl" [alt]="post.title">
     <mat-card-content>
-        <p class="post-content">{{ post.content }}</p>
+        <p class="post-content">{{ post.content | shorten: 200 }}</p>
         <app-comments [commentList]="post.comments" (newComment)="onNewComment($event)"></app-comments>
     </mat-card-content>
 </mat-card>
