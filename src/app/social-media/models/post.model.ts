@@ -1,4 +1,4 @@
-import { Comment } from '../../core/models/comment.model';
+import { Comment } from '../../shared/models/comment.model';
 
 export class Post {
     constructor(
