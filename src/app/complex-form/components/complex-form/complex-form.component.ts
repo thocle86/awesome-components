@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map, Observable, startWith, tap } from 'rxjs';
+import { confirmEqualValidator } from 'src/app/shared/validators/confirm-equal.validation';
 import { ComplexFormService } from '../../services/complex-form.service';
 
 @Component({
@@ -25,6 +26,8 @@ export class ComplexFormComponent implements OnInit {
 
   showEmailCtrl$!: Observable<boolean>;
   showPhoneCtrl$!: Observable<boolean>;
+  showEmailError$!: Observable<boolean>;
+  showPasswordError$!: Observable<boolean>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,6 +61,9 @@ export class ComplexFormComponent implements OnInit {
     this.emailForm = this.formBuilder.group({
       email: this.emailCtrl,
       confirm: this.confirmEmailCtrl
+    }, {
+      validators: [confirmEqualValidator('email', 'confirm')],
+      updateOn: 'blur'
     });
     this.phoneCtrl = this.formBuilder.control('');
     this.passwordCtrl = this.formBuilder.control('', Validators.required);
@@ -66,6 +72,9 @@ export class ComplexFormComponent implements OnInit {
       username: ['', Validators.required],
       password: this.passwordCtrl,
       confirmPassword: this.confirmPasswordCtrl
+    }, {
+      validators: [confirmEqualValidator('password', 'confirmPassword')],
+      updateOn: 'blur'
     });
   }
 
@@ -83,6 +92,18 @@ export class ComplexFormComponent implements OnInit {
       tap(showPhoneCtrl => {
         this.setPhoneValidators(showPhoneCtrl);
       })
+    );
+    this.showEmailError$ = this.emailForm.statusChanges.pipe(
+      map(status => status === 'INVALID' &&
+        this.emailCtrl.value &&
+        this.confirmEmailCtrl.value &&
+        this.emailForm.hasError('confirmEqual'))
+    );
+    this.showPasswordError$ = this.loginInfoForm.statusChanges.pipe(
+      map(status => status === 'INVALID' &&
+        this.passwordCtrl.value &&
+        this.confirmPasswordCtrl.value &&
+        this.loginInfoForm.hasError('confirmEqual'))
     );
   }
 

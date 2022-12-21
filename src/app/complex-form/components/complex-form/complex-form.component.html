@@ -1,6 +1,6 @@
 <mat-card [formGroup]="mainForm" class="main-form">
     <mat-card-title>
-        Inscription
+        <h2>Inscription</h2>
     </mat-card-title>
     <mat-card class="form-card" formGroupName="personalInfo">
         <mat-card-subtitle>Informations personnelles</mat-card-subtitle>
@@ -38,6 +38,9 @@
                 <mat-error>{{ getFormControlError(confirmEmailCtrl) }}</mat-error>
             </mat-form-field>
         </div>
+        <small class="error-text" *ngIf="showEmailError$ | async">
+            Les adresses email ne correspondent pas
+        </small>
     </mat-card>
     <mat-card class="form-card" *ngIf="showPhoneCtrl$ | async">
         <mat-card-subtitle>Téléphone</mat-card-subtitle>
@@ -66,6 +69,9 @@
                 <mat-error>Ce champ est requis</mat-error>
             </mat-form-field>
         </div>
+        <small class="error-text" *ngIf="showPasswordError$ | async">
+            Les mots de passe ne correspondent pas
+        </small>
     </mat-card>
     <mat-card-actions>
         <button [disabled]="mainForm.invalid || loading" mat-flat-button color="primary"
