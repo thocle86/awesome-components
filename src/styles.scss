@@ -3,7 +3,7 @@
 @use "./app/themes/dark";
 @include mat.core();
 
-@include mat.all-component-themes(light.$my-app-light-theme);
+@include mat.all-component-themes(light.$light-theme);
 
 html,
 body {
