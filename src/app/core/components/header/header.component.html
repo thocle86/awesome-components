@@ -7,4 +7,10 @@
             <li><a routerLink="/reactive-state">Reactive State</a></li>
         </ul>
     </nav>
+    <button mat-icon-button (click)="toggleDarkTheme()" aria-label="Toggle Dark Theme">
+        <mat-icon>{{ isDark ? "dark_mode" : "light_mode" }}</mat-icon>
+    </button>
+    <button class="btnPalette btnDefault" (click)="selectDefault()">Default</button>
+    <button class="btnPalette btnRed" (click)="selectTheme('red')">Red</button>
+    <button class="btnPalette btnGreen" (click)="selectTheme('green')">Green</button>
 </mat-toolbar>

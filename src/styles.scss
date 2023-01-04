@@ -1,4 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "./themes/light-theme";
+@use "./themes/dark-theme";
+@use "./themes/red-palette";
+@use "./themes/green-palette";
+@include mat.core();
+
+@include mat.all-component-themes(light-theme.$theme);
+
+.btnPalette {
+    border: none;
+    border: solid 1px white;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    &:hover {
+        box-shadow: 0 0 5px 2px white;
+    }
+}
+
+.btnDefault {
+    background-color: map.get(light-theme.$primary, default);
+    color: map.get(light-theme.$primary, default-contrast);
+}
+
+.btnRed {
+    background-color: map.get(red-palette.$primary, default);
+    color: map.get(red-palette.$primary, default-contrast);
+}
+
+.btnGreen {
+    background-color: map.get(green-palette.$primary, default);
+    color: map.get(green-palette.$primary, default-contrast);
+}
 
 html,
 body {
@@ -8,10 +44,6 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-image: url('./assets/images/blurred-bg.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 a {
