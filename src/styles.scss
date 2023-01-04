@@ -1,4 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "./themes/dark-theme";
+@use "./themes/red-theme";
+@use "./themes/green-theme";
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$indigo-palette);
+
+$default-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $primary,
+            accent: mat.define-palette(mat.$pink-palette, A200, A100, A400),
+            warn: mat.define-palette(mat.$red-palette),
+        ),
+    )
+);
+
+@include mat.all-component-themes($default-theme);
+
+.btnPalette {
+    border: none;
+    border: solid 1px white;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    &:hover {
+        box-shadow: 0 0 5px 2px white;
+    }
+}
+
+.btnDefault {
+    background-color: map.get($primary, default);
+    color: map.get($primary, default-contrast);
+}
+
+.btnDark {
+    background-color: map.get(dark-theme.$primary, default);
+    color: map.get(dark-theme.$primary, default-contrast);
+}
+
+.btnRed {
+    background-color: map.get(red-theme.$primary, default);
+    color: map.get(red-theme.$primary, default-contrast);
+}
+
+.btnGreen {
+    background-color: map.get(green-theme.$primary, default);
+    color: map.get(green-theme.$primary, default-contrast);
+}
 
 html,
 body {
@@ -8,10 +61,6 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-image: url('./assets/images/blurred-bg.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 a {
