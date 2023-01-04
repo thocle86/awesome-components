@@ -1,4 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+@use "./app/themes/light";
+@use "./app/themes/dark";
+@include mat.core();
+
+@include mat.all-component-themes(light.$my-app-light-theme);
 
 html,
 body {
@@ -8,10 +13,6 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-image: url('./assets/images/blurred-bg.jpeg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 a {

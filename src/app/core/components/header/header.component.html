@@ -7,4 +7,11 @@
             <li><a routerLink="/reactive-state">Reactive State</a></li>
         </ul>
     </nav>
+    <button mat-raised-button color="primary">Raised</button>
+    <button mat-raised-button color="accent">Accent</button>
+    <button mat-raised-button color="warn">Warn</button>
+    <button mat-icon-button (click)="toggleDarkTheme()" aria-label="Toggle Dark Theme">
+        <mat-icon>{{ isDark ? "dark_mode" : "light_mode" }}</mat-icon>
+    </button>
+
 </mat-toolbar>

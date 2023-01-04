@@ -1,0 +1,52 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+// $my-app-dark-primary: mat.define-palette(mat.$blue-grey-palette);
+// $my-app-dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+// $my-app-dark-warn: mat.define-palette(mat.$deep-orange-palette);
+
+// $my-app-dark-theme: mat.define-dark-theme(
+//     (
+//         color: (
+//             primary: $my-app-dark-primary,
+//             accent: $my-app-dark-accent,
+//             warn: $my-app-dark-warn,
+//         ),
+//     )
+// );
+
+// .dark-theme {
+//     @include mat.all-component-colors($my-app-dark-theme);
+// }
+
+@function dark($p, $a, $w) {
+    @return mat.define-dark-theme(
+        (
+            color: (
+                primary: $p,
+                accent: $a,
+                warn: $w,
+            ),
+        )
+    );
+}
+
+.dark-theme {
+    @include mat.all-component-colors(
+        dark(
+            mat.define-palette(mat.$blue-grey-palette),
+            mat.define-palette(mat.$amber-palette, A200, A100, A400),
+            mat.define-palette(mat.$deep-orange-palette)
+        )
+    );
+
+    .red {
+        @include mat.all-component-colors(
+            dark(
+                mat.define-palette(mat.$red-palette),
+                mat.define-palette(mat.$amber-palette, A200, A100, A400),
+                mat.define-palette(mat.$deep-orange-palette)
+            )
+        );
+    }
+}
