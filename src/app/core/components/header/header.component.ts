@@ -25,6 +25,11 @@ export class HeaderComponent implements OnInit {
   }
 
   selectTheme(theme: string) {
+    // if (this.isDark) {
+    //   theme = `${theme}`;
+    // } else {
+    //   theme = `${theme}`;
+    // }
     document.body.classList.remove(this.currentTheme);
     this.currentTheme = theme;
     document.body.classList.add(this.currentTheme);

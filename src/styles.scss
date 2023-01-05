@@ -1,12 +1,13 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "./themes/light-theme";
+@use "./themes/light-theme" as light;
 @use "./themes/dark-theme";
-@use "./themes/red-palette";
-@use "./themes/green-palette";
+@use "./themes/red-palette" as redPal;
+@use "./themes/green-palette" as greenPal;
+
 @include mat.core();
 
-@include mat.all-component-themes(light-theme.$theme);
+@include mat.all-component-themes(light.$theme);
 
 .btnPalette {
     border: none;
@@ -22,18 +23,18 @@
 }
 
 .btnDefault {
-    background-color: map.get(light-theme.$primary, default);
-    color: map.get(light-theme.$primary, default-contrast);
+    background-color: map.get(light.$primary, default);
+    color: map.get(light.$primary, default-contrast);
 }
 
 .btnRed {
-    background-color: map.get(red-palette.$primary, default);
-    color: map.get(red-palette.$primary, default-contrast);
+    background-color: map.get(redPal.$primary, default);
+    color: map.get(redPal.$primary, default-contrast);
 }
 
 .btnGreen {
-    background-color: map.get(green-palette.$primary, default);
-    color: map.get(green-palette.$primary, default-contrast);
+    background-color: map.get(greenPal.$primary, default);
+    color: map.get(greenPal.$primary, default-contrast);
 }
 
 html,

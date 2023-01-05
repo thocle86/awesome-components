@@ -1,20 +1,33 @@
 @use "sass:map";
 @use "@angular/material" as mat;
+@use "./palettes/default-palette" as defaultPal;
+@use "./red-palette" as redPal;
+@use "./green-palette" as greenPal;
 
-$primary: mat.define-palette(mat.$blue-grey-palette);
-$accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
-$warn: mat.define-palette(mat.$deep-orange-palette);
+$primary: defaultPal.$primary;
+$accent: defaultPal.$accent;
+$warn: defaultPal.$warn;
 
-$theme: mat.define-dark-theme(
-    (
-        color: (
-            primary: $primary,
-            accent: $accent,
-            warn: $warn,
-        ),
-    )
-);
+@function dark($p, $a, $w) {
+    @return mat.define-dark-theme(
+        (
+            color: (
+                primary: $p,
+                accent: $a,
+                warn: $w,
+            ),
+        )
+    );
+}
 
 .dark-theme {
-    @include mat.all-component-colors($theme);
+    @include mat.all-component-colors(dark($primary, $accent, $warn));
+
+    &.red {
+        @include mat.all-component-colors(dark(redPal.$primary, redPal.$accent, redPal.$warn));
+    }
+
+    &.green {
+        @include mat.all-component-colors(dark(greenPal.$primary, greenPal.$accent, greenPal.$warn));
+    }
 }
