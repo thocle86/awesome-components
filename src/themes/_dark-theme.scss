@@ -1,12 +1,8 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "./palettes/default-palette" as defaultPal;
-@use "./red-palette" as redPal;
-@use "./green-palette" as greenPal;
-
-$primary: defaultPal.$primary;
-$accent: defaultPal.$accent;
-$warn: defaultPal.$warn;
+@use "./color-sets/default-color-set" as defaultCS;
+@use "./color-sets/red-color-set" as redCS;
+@use "./color-sets/green-color-set" as greenCS;
 
 @function dark($p, $a, $w) {
     @return mat.define-dark-theme(
@@ -21,13 +17,13 @@ $warn: defaultPal.$warn;
 }
 
 .dark-theme {
-    @include mat.all-component-colors(dark($primary, $accent, $warn));
+    @include mat.all-component-colors(dark(defaultCS.$primary, defaultCS.$accent, defaultCS.$warn));
 
     &.red {
-        @include mat.all-component-colors(dark(redPal.$primary, redPal.$accent, redPal.$warn));
+        @include mat.all-component-colors(dark(redCS.$primary, redCS.$accent-dark, redCS.$warn));
     }
 
     &.green {
-        @include mat.all-component-colors(dark(greenPal.$primary, greenPal.$accent, greenPal.$warn));
+        @include mat.all-component-colors(dark(greenCS.$primary, greenCS.$accent, greenCS.$warn));
     }
 }

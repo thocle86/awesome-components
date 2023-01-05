@@ -2,8 +2,9 @@
 @use "@angular/material" as mat;
 @use "./themes/light-theme" as light;
 @use "./themes/dark-theme";
-@use "./themes/red-palette" as redPal;
-@use "./themes/green-palette" as greenPal;
+@use "./themes/color-sets/default-color-set" as defaultCS;
+@use "./themes/color-sets/red-color-set" as redCS;
+@use "./themes/color-sets/green-color-set" as greenCS;
 
 @include mat.core();
 
@@ -23,18 +24,18 @@
 }
 
 .btnDefault {
-    background-color: map.get(light.$primary, default);
-    color: map.get(light.$primary, default-contrast);
+    background-color: map.get(defaultCS.$primary, default);
+    color: map.get(defaultCS.$primary, default-contrast);
 }
 
 .btnRed {
-    background-color: map.get(redPal.$primary, default);
-    color: map.get(redPal.$primary, default-contrast);
+    background-color: map.get(redCS.$primary, default);
+    color: map.get(redCS.$primary, default-contrast);
 }
 
 .btnGreen {
-    background-color: map.get(greenPal.$primary, default);
-    color: map.get(greenPal.$primary, default-contrast);
+    background-color: map.get(greenCS.$primary, default);
+    color: map.get(greenCS.$primary, default-contrast);
 }
 
 html,
